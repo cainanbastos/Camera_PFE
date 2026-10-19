@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10131c">
+  <title>LensLab | Captura Inteligente</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="LensLab início">
+        <span class="brand-mark">L</span>
+        <span><strong>LensLab</strong><small>CAPTURA INTELIGENTE</small></span>
+      </a>
+      <span class="status-pill"><span class="status-dot" id="statusDot"></span><span id="statusText">Câmera desligada</span></span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">CÂMERA · CANVAS · MEDIADEVICES</p>
+        <h1>Transforme um instante<br><span>em uma captura.</span></h1>
+        <p class="intro-copy">Capture uma imagem, aplique um filtro e registre sua identificação diretamente na fotografia.</p>
+      </section>
+
+      <section class="workspace">
+        <div class="camera-panel panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">ESTÚDIO</p><h2>Visualização ao vivo</h2></div>
+            <span class="live-label"><span></span> LIVE</span>
+          </div>
+          <div class="preview-frame" id="previewFrame">
+            <video id="video" autoplay playsinline muted></video>
+            <div class="camera-placeholder" id="cameraPlaceholder">
+              <div class="placeholder-icon">⌁</div>
+              <strong>Sua câmera está pronta?</strong>
+              <p>Ative a câmera para iniciar a visualização ao vivo.</p>
+            </div>
+            <div class="frame-corner corner-tl"></div><div class="frame-corner corner-tr"></div>
+            <div class="frame-corner corner-bl"></div><div class="frame-corner corner-br"></div>
+            <span class="frame-tag">LENS / 01</span>
+          </div>
+          <div class="camera-controls">
+            <button class="button button-primary" id="startCamera">▶ Ligar câmera</button>
+            <button class="button button-secondary" id="captureButton" disabled>◎ Capturar foto</button>
+            <button class="button button-quiet" id="stopCamera" disabled>■ Desligar</button>
+          </div>
+          <p class="message" id="message" role="status" aria-live="polite">Clique em “Ligar câmera” e permita o acesso quando o navegador solicitar.</p>
+        </div>
+
+        <aside class="settings-panel panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">PERSONALIZAÇÃO</p><h2>Configurar captura</h2></div>
+            <span class="settings-icon">⚙</span>
+          </div>
+          <label for="studentName">Nome do aluno</label>
+          <input id="studentName" type="text" maxlength="80" placeholder="Digite seu nome" autocomplete="name">
+          <label for="filterSelect">Filtro visual</label>
+          <div class="filter-grid" id="filterGrid">
+            <button class="filter-option active" data-filter="sepia(1)" type="button"><span class="filter-preview sepia-preview"></span><span>Sépia</span></button>
+            <button class="filter-option" data-filter="grayscale(1)" type="button"><span class="filter-preview gray-preview"></span><span>P&B</span></button>
+            <button class="filter-option" data-filter="invert(1)" type="button"><span class="filter-preview invert-preview"></span><span>Invertido</span></button>
+            <button class="filter-option" data-filter="none" type="button"><span class="filter-preview normal-preview"></span><span>Original</span></button>
+          </div>
+          <p class="hint">O filtro selecionado será aplicado à imagem final usando <code>context.filter</code>.</p>
+          <div class="info-card"><span class="info-icon">✦</span><div><strong>Identificação automática</strong><p>Nome, data e horário são incorporados à própria foto após a captura.</p></div></div>
+        </aside>
+      </section>
+
+      <section class="result-panel panel">
+        <div class="panel-heading result-heading">
+          <div><p class="eyebrow">RESULTADO</p><h2>Última captura</h2></div>
+          <button id="downloadButton" class="button button-secondary" disabled>↓ Baixar imagem</button>
+        </div>
+        <div class="result-content" id="resultContent">
+          <div class="empty-result"><span class="empty-icon">▧</span><strong>Nenhuma captura por enquanto</strong><p>Sua foto processada aparecerá aqui.</p></div>
+          <img id="capturedImage" alt="Fotografia capturada e processada" hidden>
+        </div>
+        <p class="result-note" id="resultNote">A imagem será processada no seu navegador. Nenhuma foto é enviada para um servidor.</p>
+      </section>
+    </main>
+    <footer><span>LENSLAB © 2026</span><span>Desenvolvido com HTML · CSS · JavaScript · Canvas</span></footer>
+  </div>
+  <canvas id="canvas" hidden></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
